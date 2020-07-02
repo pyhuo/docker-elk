@@ -76,19 +76,20 @@ services:
       - elasticsearch
 
   filebeat:
+    user: root
+    command: filebeat -e -strict.perms=false
     build:
       context: filebeat/
-      # args:
-      #   ELK_VERSION: $ELK_VERSION
     # volumes:
     #   - type: bind
     #     source: ./filebeat/config/kibana.yml
     #     target: /usr/share/filebeat/filebeat.yml
     #     read_only: true
     volumes:
-        - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-    # ports:
-    #   - "5601:5601"
+        # - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+        - ./filebeat/config/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
+        - /var/lib/docker/containers:/var/lib/docker/containers:ro
+        - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - elk
     depends_on:
