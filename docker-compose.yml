@@ -11,9 +11,13 @@ services:
         source: ./elasticsearch/config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
-      - type: volume
-        source: elasticsearch
-        target: /usr/share/elasticsearch/data
+      # - type: volume
+      #   source: elasticsearch
+      #   target: /usr/share/elasticsearch/data
+      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      # - ./elasticsearch/config/sg:/usr/share/elasticsearch/config/sg:ro
+      # data 目录权限异常会导致失败： 1000:1000
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
