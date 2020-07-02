@@ -78,6 +78,9 @@ services:
   filebeat:
     user: root
     command: filebeat -e -strict.perms=false
+    environment:
+      ELASTICSEARCH_USERNAME: elastic
+      ELASTICSEARCH_PASSWORD: changeme
     build:
       context: filebeat/
     # volumes:
