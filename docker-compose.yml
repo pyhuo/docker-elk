@@ -68,6 +68,23 @@ services:
     depends_on:
       - elasticsearch
 
+  filebeat:
+    build:
+      context: filebeat/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./filebeat/config/kibana.yml
+        target: /usr/share/filebeat/filebeat.yml
+        read_only: true
+    # ports:
+    #   - "5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+      - kibana
 networks:
   elk:
     driver: bridge
