@@ -93,6 +93,11 @@ services:
         - ./filebeat/config/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
         - /var/lib/docker/containers:/var/lib/docker/containers:ro
         - /var/run/docker.sock:/var/run/docker.sock:ro
+        # 把logs和data共享出来
+        - ./filebeat/logs:/usr/share/filebeat/logs
+        - ./filebeat/data:/usr/share/filebeat/data
+        # 宿主机器的日志
+        - /var/log/nginx:/var/log/nginx
     networks:
       - elk
     depends_on:
