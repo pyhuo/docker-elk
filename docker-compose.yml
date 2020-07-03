@@ -97,7 +97,13 @@ services:
         - ./filebeat/logs:/usr/share/filebeat/logs
         - ./filebeat/data:/usr/share/filebeat/data
         # 宿主机器的日志
-        - /var/log/nginx:/var/log/nginx
+        - /var/log/nginx:/var/log/nginx:ro
+        - /var/log/syslog:/var/log/syslog:ro
+        - /var/log/supervisor:/var/log/supervisor:ro
+        - /var/log/uwsgi:/var/log/uwsgi:ro
+        - /var/log/rabbitmq:/var/log/rabbitmq:ro
+        - /var/log/postgresql:/var/log/postgresql:ro
+        - /var/log/mongodb:/var/log/mongodb:ro
     networks:
       - elk
     depends_on:
