@@ -15,3 +15,32 @@ output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elasticsearch:9200}'
   username: '${ELASTICSEARCH_USERNAME:}'
   password: '${ELASTICSEARCH_PASSWORD:}'
+
+# - type: log
+#   paths:
+#     - /var/log/mysql.log
+#   scan_frequency: 10s
+
+filebeat.modules:
+- module: nginx
+ access:
+   var.paths: ["/var/log/nginx/*.log"]
+# filebeat.prospectors:
+#   - input_type: log
+  
+#     # Paths that should be crawled and fetched. Glob based paths.
+#     paths:
+#       - /home/ubuntu/Documents/510YamiAPI/logs/debug_json.log
+#     #json.keys_under_root: true
+#     #json.keys_under_root: true
+#     json.add_error_key: true
+#     json.overwrite_keys: true
+  
+  # - input_type: log
+  
+  #   # Paths that should be crawled and fetched. Glob based paths.
+  #   paths:
+  #     - /tmp/yami_admin.log
+  #     - /tmp/yami_admin_json.log
+  #   json.add_error_key: true
+  #   json.overwrite_keys: true
