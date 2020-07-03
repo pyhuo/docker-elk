@@ -96,6 +96,8 @@ services:
         # 把logs和data共享出来
         - ./filebeat/logs:/usr/share/filebeat/logs
         - ./filebeat/data:/usr/share/filebeat/data
+        - ./filebeat/modules.d:/usr/share/filebeat/modules.d:ro
+
         # 宿主机器的日志
         - /var/log/nginx:/var/log/nginx:ro
         - /var/log/syslog:/var/log/syslog:ro
