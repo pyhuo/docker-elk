@@ -23,8 +23,8 @@ output.elasticsearch:
 
 filebeat.modules:
 - module: nginx
- access:
-   var.paths: ["/var/log/nginx/*.log"]
+  access:
+    var.paths: ["/var/log/nginx/*.log"]
 # filebeat.prospectors:
 #   - input_type: log
   
